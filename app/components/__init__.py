@@ -1,0 +1,1 @@
+from .search_bar_module import SearchBar
