@@ -1,30 +1,31 @@
-from tkinter import *
-from components import *
-import tkinter as tk
-import os
-from geopy.geocoders import Nominatim
-from tkinter import ttk, messagebox
-from timezonefinder import TimezoneFinder
-from datetime import datetime
-import requests
-import pytz
+from PyQt6.QtWidgets import QApplication, QWidget, QVBoxLayout, QLineEdit, QPushButton
+import sys
+from components.navigation_bar import NavigationBar
+
+class MainApp(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+
+    def initUI(self):
+        self.setWindowTitle("pyForecast")
+        self.setGeometry(100, 100, 800, 600)  # x, y, width, height
+
+        # Layout setup
+        layout = QVBoxLayout(self)
+
+        # Create and add the navigation bar to the layout
+        nav_bar = NavigationBar
+        layout.addWidget(nav_bar)
+
+
+        self.setLayout(layout)
 
 def main():
-    root = tk.Tk()
-    root.title("Weather Checker")
+    app = QApplication(sys.argv)
+    ex = MainApp()
+    ex.show()
+    sys.exit(app.exec())
 
-    # Set the full path to the icon
-    dir_path = os.path.dirname(os.path.realpath(__file__))  # Gets the directory of the current script
-    icon_path = os.path.join(dir_path, 'assets', 'icon.png')
-
-    # Load the icon image
-    icon_image = PhotoImage(file=icon_path)
-    root.iconphoto(False, icon_image)
-
-    search_bar = SearchBar(root)
-    search_bar.pack(pady=0)
-
-    root.mainloop()
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

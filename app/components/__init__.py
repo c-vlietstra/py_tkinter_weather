@@ -1,1 +1,1 @@
-from .search_bar_module import SearchBar
+from .navigation_bar import navigation_bar
